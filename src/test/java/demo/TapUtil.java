@@ -1,6 +1,7 @@
 package demo;
 
 import io.appium.java_client.AppiumBy;
+import io.appium.java_client.android.AndroidDriver;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
@@ -13,16 +14,19 @@ import java.net.MalformedURLException;
 import java.time.Duration;
 import java.util.Collections;
 
-public class GesturesUtils extends BaseTest {
+public class TapUtil extends BaseTest {
 
 
-    public void OpenMenuUsingTap() throws MalformedURLException, InterruptedException {
+    @Test
+    public void openMenuUsingTap() throws MalformedURLException, InterruptedException {
         BaseTest baseTest = new BaseTest();
         baseTest.launchAndroid();
         WebElement openMenu = androidDriver.findElement(AppiumBy.accessibilityId("open menu"));
-        Point location = openMenu.getLocation();
-        Dimension dimension = openMenu.getSize();
-
+        tap(openMenu,androidDriver);
+    }
+    public void tap(WebElement element, AndroidDriver driver) throws MalformedURLException, InterruptedException {
+        Point location = element.getLocation();
+        Dimension dimension = element.getSize();
         Point centerOfElement = getCenterOfElement(location, dimension);
         PointerInput finger1 = new PointerInput(PointerInput.Kind.TOUCH, "finger1");
         Sequence sequence=
