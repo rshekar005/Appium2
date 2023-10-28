@@ -20,9 +20,12 @@ public class TapUtil extends BaseTest {
     @Test
     public void openMenuUsingTap() throws MalformedURLException, InterruptedException {
         BaseTest baseTest = new BaseTest();
+        AppiumService appiumService=new AppiumService();
+        appiumService.startServer();
         baseTest.launchAndroid();
         WebElement openMenu = androidDriver.findElement(AppiumBy.accessibilityId("open menu"));
         tap(openMenu,androidDriver);
+        appiumService.stopServer();
     }
     public void tap(WebElement element, AndroidDriver driver) throws MalformedURLException, InterruptedException {
         Point location = element.getLocation();
